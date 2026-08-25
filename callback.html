@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connecting to Studio Queue</title>
+<style>
+body{background:#F0EFE7;color:#1D1D1A;font-family:system-ui,sans-serif;min-height:100vh;display:grid;place-items:center;margin:0;padding:24px;text-align:center}
+main{max-width:440px;background:#FDFCF6;border-radius:28px;padding:40px;box-shadow:0 8px 24px rgba(0,0,0,.07)}
+h1{color:#267F53;font-size:22px;margin:0 0 10px}
+p{font-size:14px;color:#6E6D60}
+code{background:#F0EFE7;border-radius:8px;padding:2px 8px;font-size:13px;word-break:break-all}
+</style>
+</head>
+<body>
+<main>
+<h1>Connecting to Studio Queue...</h1>
+<p id="msg">Sending you back to the app.</p>
+<script>
+var q = window.location.search;
+if (q && q.indexOf("code=") !== -1) {
+  window.location.replace("http://localhost:8770/api/tiktok/callback" + q);
+  setTimeout(function () {
+    document.getElementById("msg").innerHTML =
+      "If the app did not open, make sure Studio Queue is running on your computer, then reload this page.";
+  }, 2500);
+} else {
+  document.getElementById("msg").textContent = "No login response found. Start the connection from inside Studio Queue.";
+}
+</script>
+</main>
+</body>
+</html>
